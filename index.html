@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="uz" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Arab tilini o'qitishga mo'ljallangan mini ta'lim platformasi - harflarni, so'zlarni va gaplarni interaktiv tarzda o'rganing." />
+  <meta name="keywords" content="arab tili, arabcha o'rganish, ta'lim, harflar, lug'at" />
+  <title>ArabLearn – Arab Tilini O'rganing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =========== NAVBAR =========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-icon">🕌</span>
+        <span class="logo-text">Arab<span class="logo-accent">Learn</span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Bosh sahifa</a></li>
+        <li><a href="#alphabet" class="nav-link">Alifbo</a></li>
+        <li><a href="#lessons" class="nav-link">Darslar</a></li>
+        <li><a href="#video-lessons" class="nav-link">Video Darslar</a></li>
+        <li><a href="#quiz" class="nav-link">Test</a></li>
+        <li><a href="#dictionary" class="nav-link">Lug'at</a></li>
+        <li><a href="#progress" class="nav-link">Natijam</a></li>
+        <li><a href="#signup" class="nav-link nav-btn-signup" id="openSignupBtn">Ro'yxatdan o'tish</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =========== HERO =========== -->
+  <section class="hero" id="home">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✨ O'rganish – Eng katta boylik</div>
+      <h1 class="hero-title">
+        Arab Tilini<br />
+        <span class="gradient-text">Interaktiv</span> Tarzda<br />
+        O'rganing
+      </h1>
+      <p class="hero-subtitle">
+        Alifbodan tortib murakkab gaplargacha – bosqichma-bosqich, qiziqarli va samarali usulda Arab tilini o'zlashtiring.
+      </p>
+      <div class="hero-arabic">
+        <span class="arabic-word" id="heroArabic">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</span>
+        <span class="arabic-translation">Alloh nomi bilan, Mehribon va Rahmdil</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#lessons" class="btn btn-primary">
+          <span>Dars Boshlash</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#alphabet" class="btn btn-outline">Alifboni Ko'rish</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num" data-target="28">0</span>
+          <span class="stat-label">Dars</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="29">0</span>
+          <span class="stat-label">Harf</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="500">0</span>
+          <span class="stat-label">So'z</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-float" id="floatCard">
+        <div class="float-card-inner">
+          <div class="float-letter" id="floatLetter">ب</div>
+          <div class="float-info">
+            <span class="float-name">Ba</span>
+            <span class="float-sound">/b/ tovushi</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-orb orb1"></div>
+      <div class="hero-orb orb2"></div>
+      <div class="hero-orb orb3"></div>
+    </div>
+  </section>
+
+  <!-- =========== ALIFBO =========== -->
+  <section class="section" id="alphabet">
+    <div class="section-header">
+      <span class="section-badge">Alifbo</span>
+      <h2 class="section-title">Arab Alifbosi</h2>
+      <p class="section-subtitle">29 ta harf – har birini bosing va tinglang</p>
+    </div>
+    <div class="filter-tabs" id="alphabetFilter">
+      <button class="tab-btn active" data-filter="all">Barchasi</button>
+      <button class="tab-btn" data-filter="moon">Qamariy harflar</button>
+      <button class="tab-btn" data-filter="sun">Shamsiy harflar</button>
+    </div>
+    <div class="alphabet-grid" id="alphabetGrid"></div>
+  </section>
+
+  <!-- =========== DARSLAR =========== -->
+  <section class="section section-dark" id="lessons">
+    <div class="section-header">
+      <span class="section-badge">Ta'lim</span>
+      <h2 class="section-title">Darslar</h2>
+      <p class="section-subtitle">Bosqichma-bosqich o'rganing</p>
+    </div>
+    <div class="lessons-grid" id="lessonsGrid"></div>
+  </section>
+
+  <!-- =========== VIDEO DARSLIKLAR =========== -->
+  <section class="section" id="video-lessons">
+    <div class="section-header">
+      <span class="section-badge">🎬 Video Ta'lim</span>
+      <h2 class="section-title">Video Darsliklar</h2>
+      <p class="section-subtitle">44 ta professional video darslik – har birini bosing va tomosha qiling</p>
+    </div>
+
+    <!-- Video Filter Tabs -->
+    <div class="filter-tabs" id="videoFilter">
+      <button class="tab-btn active" data-vfilter="all">Barchasi</button>
+      <button class="tab-btn" data-vfilter="boshlangich">Boshlang'ich</button>
+      <button class="tab-btn" data-vfilter="orta">O'rta</button>
+      <button class="tab-btn" data-vfilter="yuqori">Yuqori</button>
+      <button class="tab-btn" data-vfilter="quron">Qur'on</button>
+    </div>
+
+    <!-- Search bar -->
+    <div class="video-search-wrap">
+      <input type="text" id="videoSearch" class="video-search" placeholder="Video darslik qidiring..." />
+      <span class="video-search-icon">🔍</span>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="video-grid" id="videoGrid"></div>
+  </section>
+
+  <!-- =========== VIDEO PLAYER MODAL =========== -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-box video-modal-box" id="videoModalBox">
+      <button class="modal-close" id="videoModalClose">✕</button>
+      <div class="video-modal-content">
+        <div class="video-player-wrap">
+          <iframe
+            id="videoIframe"
+            src=""
+            title="Video darslik"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-modal-info">
+          <span class="video-modal-badge" id="videoModalBadge">Boshlang'ich</span>
+          <h3 class="video-modal-title" id="videoModalTitle">Video darslik</h3>
+          <p class="video-modal-desc" id="videoModalDesc"></p>
+          <div class="video-modal-meta">
+            <span id="videoModalDuration">⏱ 15 daqiqa</span>
+            <span id="videoModalLesson">📚 1-dars</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========== DARS MODAL =========== -->
+  <div class="modal-overlay" id="lessonModal">
+    <div class="modal-box" id="lessonModalBox">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- =========== SIGNUP MODAL =========== -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal-box" id="signupModalBox">
+      <button class="modal-close" id="signupModalClose">✕</button>
+      <div class="modal-content">
+        <div class="modal-lesson-header" style="text-align: center;">
+          <span class="modal-lesson-icon">👤</span>
+          <h3 class="modal-lesson-title">Ro'yxatdan O'tish</h3>
+          <p class="modal-lesson-subtitle">ArabLearn platformasiga qo'shiling</p>
+        </div>
+        <form id="signupForm" class="signup-form">
+          <div class="form-group">
+            <label for="regName">Ismingiz</label>
+            <input type="text" id="regName" placeholder="Ismingizni kiriting" required />
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email yoki Telefon</label>
+            <input type="text" id="regEmail" placeholder="Email yoki telefon raqamingiz" required />
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Parol</label>
+            <input type="password" id="regPassword" placeholder="Parol o'ylab toping" required />
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px; justify-content: center;">Ro'yxatdan O'tish</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========== TEST =========== -->
+  <section class="section" id="quiz">
+    <div class="section-header">
+      <span class="section-badge">Bilimni Sinash</span>
+      <h2 class="section-title">Interaktiv Test</h2>
+      <p class="section-subtitle">Bilimingizni tekshiring</p>
+    </div>
+    <div class="quiz-container" id="quizContainer">
+      <div class="quiz-header">
+        <div class="quiz-score-bar">
+          <div class="quiz-score-track">
+            <div class="quiz-score-fill" id="quizProgress"></div>
+          </div>
+          <span id="quizProgressText">0 / 10</span>
+        </div>
+        <div class="quiz-meta">
+          <span id="quizCategory">Harflar</span>
+          <span class="quiz-points">⭐ <span id="quizPoints">0</span> ball</span>
+        </div>
+      </div>
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+      <div class="quiz-result" id="quizResult" style="display:none">
+        <div class="result-icon">🎉</div>
+        <h3 id="resultTitle">Natija</h3>
+        <p id="resultDesc"></p>
+        <div class="result-stars" id="resultStars"></div>
+        <button class="btn btn-primary" id="restartQuiz">Qayta Boshlash</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== LUG'AT =========== -->
+  <section class="section section-dark" id="dictionary">
+    <div class="section-header">
+      <span class="section-badge">Lug'at</span>
+      <h2 class="section-title">Arab–O'zbek Lug'at</h2>
+      <p class="section-subtitle">500+ so'z va iboralar</p>
+    </div>
+    <div class="dict-search-box">
+      <input type="text" class="dict-search" id="dictSearch" placeholder="So'z qidiring... (arabcha yoki o'zbekcha)" />
+      <span class="dict-search-icon">🔍</span>
+    </div>
+    <div class="dict-categories" id="dictCategories"></div>
+    <div class="dict-grid" id="dictGrid"></div>
+  </section>
+
+  <!-- =========== NATIJAM =========== -->
+  <section class="section" id="progress">
+    <div class="section-header">
+      <span class="section-badge">Statistika</span>
+      <h2 class="section-title">Mening Natijalarim</h2>
+      <p class="section-subtitle">O'sib borishingizni kuzating</p>
+    </div>
+    <div class="progress-dashboard">
+      <div class="progress-cards">
+        <div class="prog-card">
+          <div class="prog-icon">📚</div>
+          <div class="prog-info">
+            <span class="prog-label">O'tilgan darslar</span>
+            <span class="prog-value" id="completedLessons">0</span>
+          </div>
+          <div class="prog-bar-wrap">
+            <div class="prog-bar" id="lessonBar"></div>
+          </div>
+        </div>
+        <div class="prog-card">
+          <div class="prog-icon">🔤</div>
+          <div class="prog-info">
+            <span class="prog-label">O'rganilgan harflar</span>
+            <span class="prog-value" id="learnedLetters">0</span>
+          </div>
+          <div class="prog-bar-wrap">
+            <div class="prog-bar" id="letterBar"></div>
+          </div>
+        </div>
+        <div class="prog-card">
+          <div class="prog-icon">⭐</div>
+          <div class="prog-info">
+            <span class="prog-label">Jami ball</span>
+            <span class="prog-value" id="totalPoints">0</span>
+          </div>
+          <div class="prog-bar-wrap">
+            <div class="prog-bar" id="pointBar"></div>
+          </div>
+        </div>
+        <div class="prog-card">
+          <div class="prog-icon">🏆</div>
+          <div class="prog-info">
+            <span class="prog-label">Test natijalari</span>
+            <span class="prog-value" id="quizScore">0%</span>
+          </div>
+          <div class="prog-bar-wrap">
+            <div class="prog-bar" id="quizBar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="achievements-section">
+        <h3 class="achieve-title">🏅 Yutuqlar</h3>
+        <div class="achievements-grid" id="achievementsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== FOOTER =========== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">🕌</span>
+        <span class="logo-text">Arab<span class="logo-accent">Learn</span></span>
+        <p>Arab tilini o'rganishning eng qulay yo'li</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Bosh sahifa</a>
+        <a href="#alphabet">Alifbo</a>
+        <a href="#lessons">Darslar</a>
+        <a href="#video-lessons">Video Darslar</a>
+        <a href="#quiz">Test</a>
+        <a href="#dictionary">Lug'at</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ArabLearn – Arab tilini o'qitishga mo'ljallangan mini ta'lim platformasi</p>
+    </div>
+  </footer>
+
+  <!-- =========== FLOATING AUDIO BTN =========== -->
+  <button class="fab" id="audioFab" title="Ovozni yoqish/o'chirish">🔊</button>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
