@@ -62,15 +62,27 @@ function showToast(msg, type = 'info', duration = 3000) {
 }
 
 // ─── Speech Synthesis ───
+window._speechUtterances = [];
 function speak(text, lang = 'ar-SA') {
     if (!STATE.audioEnabled) return;
     if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const utt = new SpeechSynthesisUtterance(text);
-        utt.lang = lang;
-        utt.rate = 0.8;
-        utt.pitch = 1;
-        window.speechSynthesis.speak(utt);
+        setTimeout(() => {
+            const utt = new SpeechSynthesisUtterance(text);
+            utt.lang = lang;
+            utt.rate = 0.8;
+            utt.pitch = 1;
+            window._speechUtterances.push(utt);
+            utt.onend = () => {
+                const index = window._speechUtterances.indexOf(utt);
+                if (index > -1) window._speechUtterances.splice(index, 1);
+            };
+            utt.onerror = () => {
+                const index = window._speechUtterances.indexOf(utt);
+                if (index > -1) window._speechUtterances.splice(index, 1);
+            };
+            window.speechSynthesis.speak(utt);
+        }, 50);
     }
 }
 
@@ -314,7 +326,7 @@ function openLesson(lesson) {
     const isDone = STATE.completedLessons.includes(lesson.id);
 
     const vocabHTML = lesson.content.vocabulary.map(v => `
-    <div class="vocab-item" onclick="speak('${v.arabic}')">
+    <div class="vocab-item" onclick="speak(this.getAttribute('data-arabic'))" data-arabic="${v.arabic}">
       <div class="vocab-arabic">${v.arabic}</div>
       <div class="vocab-info">
         <div class="vocab-uz">${v.uz}</div>
@@ -325,7 +337,7 @@ function openLesson(lesson) {
   `).join('');
 
     const examplesHTML = lesson.content.examples.map(ex => `
-    <div class="arabic-example" onclick="speak('${ex.arabic}')">
+    <div class="arabic-example" onclick="speak(this.getAttribute('data-arabic'))" data-arabic="${ex.arabic}">
       <span class="ex-arabic">${ex.arabic}</span>
       <span class="ex-trans">${ex.trans}</span>
     </div>
@@ -438,7 +450,7 @@ function renderQuizQuestion() {
     const questionEl = document.getElementById('quizQuestion');
     if (q.qArabic) {
         questionEl.innerHTML = `
-      <span class="quiz-q-arabic" onclick="speak('${q.qArabic}')" style="cursor:pointer">${q.qArabic}</span>
+      <span class="quiz-q-arabic" onclick="speak(this.getAttribute('data-arabic'))" data-arabic="${q.qArabic}" style="cursor:pointer">${q.qArabic}</span>
       <span style="font-size:15px;color:var(--text2)">${q.q}</span>
     `;
     } else {
@@ -569,7 +581,7 @@ function renderDict(search = '') {
     }
 
     grid.innerHTML = words.map((w, i) => `
-    <div class="dict-card" onclick="handleWordClick('${w.arabic}', '${w.uz}')" id="dict-${i}">
+    <div class="dict-card" onclick="handleWordClick(this.getAttribute('data-arabic'), this.getAttribute('data-uz'))" data-arabic="${w.arabic}" data-uz="${w.uz}" id="dict-${i}">
       <div class="dict-info">
         <div class="dict-uz">${w.icon} ${w.uz}</div>
         <div class="dict-transcription">${w.trans}</div>
