@@ -65,25 +65,33 @@ function showToast(msg, type = 'info', duration = 3000) {
 window._speechUtterances = [];
 function speak(text, lang = 'ar-SA') {
     if (!STATE.audioEnabled) return;
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        setTimeout(() => {
-            const utt = new SpeechSynthesisUtterance(text);
-            utt.lang = lang;
-            utt.rate = 0.8;
-            utt.pitch = 1;
-            window._speechUtterances.push(utt);
-            utt.onend = () => {
-                const index = window._speechUtterances.indexOf(utt);
-                if (index > -1) window._speechUtterances.splice(index, 1);
-            };
-            utt.onerror = () => {
-                const index = window._speechUtterances.indexOf(utt);
-                if (index > -1) window._speechUtterances.splice(index, 1);
-            };
-            window.speechSynthesis.speak(utt);
-        }, 50);
-    }
+    
+    const audioLang = lang.includes('ar') ? 'ar' : lang;
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${audioLang}&client=tw-ob&q=${encodeURIComponent(text)}`;
+    const audio = new Audio(url);
+    
+    audio.play().catch(err => {
+        console.warn("Google TTS ishlamadi, brauzer ovoziga o'tilmoqda:", err);
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            setTimeout(() => {
+                const utt = new SpeechSynthesisUtterance(text);
+                utt.lang = lang;
+                utt.rate = 0.8;
+                utt.pitch = 1;
+                window._speechUtterances.push(utt);
+                utt.onend = () => {
+                    const index = window._speechUtterances.indexOf(utt);
+                    if (index > -1) window._speechUtterances.splice(index, 1);
+                };
+                utt.onerror = () => {
+                    const index = window._speechUtterances.indexOf(utt);
+                    if (index > -1) window._speechUtterances.splice(index, 1);
+                };
+                window.speechSynthesis.speak(utt);
+            }, 50);
+        }
+    });
 }
 
 // ─── Navbar ───
