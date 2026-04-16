@@ -23,8 +23,6 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="nav-link active">Bosh sahifa</a></li>
         <li><a href="#alphabet" class="nav-link">Alifbo</a></li>
-        <li><a href="#lessons" class="nav-link">Darslar</a></li>
-        <li><a href="#video-lessons" class="nav-link">Video Darslar</a></li>
         <li><a href="#quiz" class="nav-link">Test</a></li>
         <li><a href="#dictionary" class="nav-link">Lug'at</a></li>
         <li><a href="#progress" class="nav-link">Natijam</a></li>
@@ -54,18 +52,13 @@
         <span class="arabic-translation">Alloh nomi bilan, Mehribon va Rahmdil</span>
       </div>
       <div class="hero-btns">
-        <a href="#lessons" class="btn btn-primary">
-          <span>Dars Boshlash</span>
+        <a href="#alphabet" class="btn btn-primary">
+          <span>Alifboni Ko'rish</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#alphabet" class="btn btn-outline">Alifboni Ko'rish</a>
+        <a href="#quiz" class="btn btn-outline">Testni Boshlash</a>
       </div>
       <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-num" data-target="28">0</span>
-          <span class="stat-label">Dars</span>
-        </div>
-        <div class="stat-divider"></div>
         <div class="stat-item">
           <span class="stat-num" data-target="29">0</span>
           <span class="stat-label">Harf</span>
@@ -107,79 +100,6 @@
     </div>
     <div class="alphabet-grid" id="alphabetGrid"></div>
   </section>
-
-  <!-- =========== DARSLAR =========== -->
-  <section class="section section-dark" id="lessons">
-    <div class="section-header">
-      <span class="section-badge">Ta'lim</span>
-      <h2 class="section-title">Darslar</h2>
-      <p class="section-subtitle">Bosqichma-bosqich o'rganing</p>
-    </div>
-    <div class="lessons-grid" id="lessonsGrid"></div>
-  </section>
-
-  <!-- =========== VIDEO DARSLIKLAR =========== -->
-  <section class="section" id="video-lessons">
-    <div class="section-header">
-      <span class="section-badge">🎬 Video Ta'lim</span>
-      <h2 class="section-title">Video Darsliklar</h2>
-      <p class="section-subtitle">44 ta professional video darslik – har birini bosing va tomosha qiling</p>
-    </div>
-
-    <!-- Video Filter Tabs -->
-    <div class="filter-tabs" id="videoFilter">
-      <button class="tab-btn active" data-vfilter="all">Barchasi</button>
-      <button class="tab-btn" data-vfilter="boshlangich">Boshlang'ich</button>
-      <button class="tab-btn" data-vfilter="orta">O'rta</button>
-      <button class="tab-btn" data-vfilter="yuqori">Yuqori</button>
-      <button class="tab-btn" data-vfilter="quron">Qur'on</button>
-    </div>
-
-    <!-- Search bar -->
-    <div class="video-search-wrap">
-      <input type="text" id="videoSearch" class="video-search" placeholder="Video darslik qidiring..." />
-      <span class="video-search-icon">🔍</span>
-    </div>
-
-    <!-- Video Grid -->
-    <div class="video-grid" id="videoGrid"></div>
-  </section>
-
-  <!-- =========== VIDEO PLAYER MODAL =========== -->
-  <div class="modal-overlay" id="videoModal">
-    <div class="modal-box video-modal-box" id="videoModalBox">
-      <button class="modal-close" id="videoModalClose">✕</button>
-      <div class="video-modal-content">
-        <div class="video-player-wrap">
-          <iframe
-            id="videoIframe"
-            src=""
-            title="Video darslik"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="video-modal-info">
-          <span class="video-modal-badge" id="videoModalBadge">Boshlang'ich</span>
-          <h3 class="video-modal-title" id="videoModalTitle">Video darslik</h3>
-          <p class="video-modal-desc" id="videoModalDesc"></p>
-          <div class="video-modal-meta">
-            <span id="videoModalDuration">⏱ 15 daqiqa</span>
-            <span id="videoModalLesson">📚 1-dars</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========== DARS MODAL =========== -->
-  <div class="modal-overlay" id="lessonModal">
-    <div class="modal-box" id="lessonModalBox">
-      <button class="modal-close" id="modalClose">✕</button>
-      <div class="modal-content" id="modalContent"></div>
-    </div>
-  </div>
 
   <!-- =========== SIGNUP MODAL =========== -->
   <div class="modal-overlay" id="signupModal">
@@ -269,16 +189,6 @@
     <div class="progress-dashboard">
       <div class="progress-cards">
         <div class="prog-card">
-          <div class="prog-icon">📚</div>
-          <div class="prog-info">
-            <span class="prog-label">O'tilgan darslar</span>
-            <span class="prog-value" id="completedLessons">0</span>
-          </div>
-          <div class="prog-bar-wrap">
-            <div class="prog-bar" id="lessonBar"></div>
-          </div>
-        </div>
-        <div class="prog-card">
           <div class="prog-icon">🔤</div>
           <div class="prog-info">
             <span class="prog-label">O'rganilgan harflar</span>
@@ -327,8 +237,6 @@
       <div class="footer-links">
         <a href="#home">Bosh sahifa</a>
         <a href="#alphabet">Alifbo</a>
-        <a href="#lessons">Darslar</a>
-        <a href="#video-lessons">Video Darslar</a>
         <a href="#quiz">Test</a>
         <a href="#dictionary">Lug'at</a>
       </div>
